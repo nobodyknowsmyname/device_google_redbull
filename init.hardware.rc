@@ -20,6 +20,40 @@ import /vendor/etc/init/hw/init.${ro.boot.hardware.platform}.logging.rc
 import /vendor/etc/init/hw/init.${ro.boot.hardware.platform}.mpssrfs.rc
 import /vendor/etc/init/hw/init.${ro.boot.hardware.platform}.power.rc
 
+# The vendor power HAL and camera configuration still use schedtune groups.
+# Newer system init no longer mounts this legacy cgroup, so restore it for the
+# SM7250 vendor stack.
+on init
+    mkdir /dev/stune
+    mount cgroup none /dev/stune nodev noexec nosuid schedtune
+    mkdir /dev/stune/foreground
+    mkdir /dev/stune/background
+    mkdir /dev/stune/top-app
+    mkdir /dev/stune/rt
+    mkdir /dev/stune/camera-daemon
+    mkdir /dev/stune/nnapi-hal
+    chown system system /dev/stune
+    chown system system /dev/stune/foreground
+    chown system system /dev/stune/background
+    chown system system /dev/stune/top-app
+    chown system system /dev/stune/rt
+    chown system system /dev/stune/camera-daemon
+    chown system system /dev/stune/nnapi-hal
+    chown system system /dev/stune/tasks
+    chown system system /dev/stune/foreground/tasks
+    chown system system /dev/stune/background/tasks
+    chown system system /dev/stune/top-app/tasks
+    chown system system /dev/stune/rt/tasks
+    chown system system /dev/stune/camera-daemon/tasks
+    chown system system /dev/stune/nnapi-hal/tasks
+    chmod 0664 /dev/stune/tasks
+    chmod 0664 /dev/stune/foreground/tasks
+    chmod 0664 /dev/stune/background/tasks
+    chmod 0664 /dev/stune/top-app/tasks
+    chmod 0664 /dev/stune/rt/tasks
+    chmod 0664 /dev/stune/camera-daemon/tasks
+    chmod 0664 /dev/stune/nnapi-hal/tasks
+
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
