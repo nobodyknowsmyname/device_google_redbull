@@ -1,0 +1,2 @@
+# GPS assistance control shared with the vendor location stack.
+system_restricted_prop(xtra_control_prop)

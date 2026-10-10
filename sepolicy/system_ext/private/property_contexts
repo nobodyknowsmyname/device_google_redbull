@@ -1,0 +1,1 @@
+persist.sys.xtra-daemon.enabled u:object_r:xtra_control_prop:s0 exact bool

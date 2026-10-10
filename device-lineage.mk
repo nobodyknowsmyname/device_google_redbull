@@ -37,12 +37,6 @@ PRODUCT_PRODUCT_PROPERTIES += ro.opa.eligible_device=true
 # ION
 $(call soong_config_set_bool,libion,legacy_impl,true)
 
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay-service.sdm
-
-$(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
-
 # Parts
 PRODUCT_PACKAGES += \
     GoogleParts
@@ -51,9 +45,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     PresencePolling \
     RcsService
-
-# Touch
-include hardware/google/pixel/touch/device.mk
 
 # Build necessary packages for vendor
 
