@@ -6,3 +6,5 @@ allow system_app fwk_stats_hwservice:hwservice_manager find;
 
 allow system_app hal_wireless_charger_service:service_manager find;
 binder_call(system_app, hal_wireless_charger)
+
+binder_call(system_app, hal_camera_default)
