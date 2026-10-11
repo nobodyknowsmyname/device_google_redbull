@@ -23,9 +23,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/allowlist_com.google.android.as.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.google.android.as.xml
 
 # Camera
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.vendor.camera.extensions.package=com.google.android.apps.camera.services \
-    ro.vendor.camera.extensions.service=com.google.android.apps.camera.services.extensions.service.PixelExtensions
+# Redbull/redfin uses system_ext/framework/com.google.android.camera.extensions.jar
+# Do not set ro.vendor.camera.extensions.package to the non-existent Pixel 6+ Tensor service APK.
 
 # EUICC
 PRODUCT_COPY_FILES += \
@@ -49,10 +48,7 @@ PRODUCT_PACKAGES += \
 # Build necessary packages for vendor
 
 # CHRE
-PRODUCT_PACKAGES += \
-    chre_daemon_msm
-
-$(call soong_config_set_bool,chre,chre_daemon_load_into_sensorspd,true)
+# chre_daemon_msm is not built on Android 17
 
 # Display
 $(call soong_config_set,qtidisplay,default,true)
