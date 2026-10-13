@@ -36,7 +36,6 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/qcom/wlan \
     hardware/qcom/wlan/legacy \
     hardware/qcom-caf/bootctrl \
-    system/chre/host/hal_generic \
     vendor/qcom/opensource/data-ipa-cfg-mgr-legacy-um
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -150,9 +149,8 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_PACKAGES += \
     checkpoint_gc
 
-# Context hub HAL
-PRODUCT_PACKAGES += \
-    android.hardware.contexthub-service.generic
+# No ContextHub HAL: Android 17 has no Hexagon CHRE daemon for redbull.
+# Sensors continue to use sensors.qti and the sensor multihal.
 
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
@@ -165,7 +163,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml\
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.context_hub.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.context_hub.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.reboot_escrow.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.reboot_escrow.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
