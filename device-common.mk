@@ -104,6 +104,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.hardware.diag.rc.user:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_PLATFORM).diag.rc
 
+# Extended VoLTE/VoWiFi/5G carrier MBN configurations
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/mbn/mcfg_sw,$(TARGET_COPY_OUT_VENDOR)/rfs/msm/mpss/readonly/vendor/mbn/mcfg_sw)
+
 # A/B support
 PRODUCT_PACKAGES += \
     otapreopt_script \
@@ -295,6 +299,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore_desede=true \
     persist.vendor.radio.procedure_bytes=SKIP \
     persist.vendor.radio.hidl_dev_service=true \
+    persist.dbg.volte_avail_ovr=1 \
+    persist.dbg.vt_avail_ovr=1 \
+    persist.dbg.wfc_avail_ovr=1 \
+    persist.dbg.ims_volte_enable=1 \
+    persist.radio.calls.on.ims=1 \
+    persist.vendor.radio.calls.on.ims=1 \
+    persist.vendor.radio.force_ltd_sys_ind=1 \
+    persist.vendor.radio.force_on_dc=true \
+    persist.vendor.radio.enable_temp_dds=true \
+    persist.data.iwlan.enable=true \
+    persist.data.iwlan=1 \
+    persist.data.iwlan.ipsec.ap=1 \
+    ro.vendor.radio.5g=3
 
 # Enable reboot free DSDS
 PRODUCT_PRODUCT_PROPERTIES += \
