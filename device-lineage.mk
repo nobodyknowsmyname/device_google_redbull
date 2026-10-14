@@ -18,9 +18,17 @@ PRODUCT_SOONG_NAMESPACES += \
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
+# Adaptive Charging
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/adaptivecharging.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/adaptivecharging.xml
+
 # AiAi Config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/allowlist_com.google.android.as.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.google.android.as.xml
+
+# Quick Tap
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/quick_tap.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/quick_tap.xml
 
 # Camera
 # Redbull/redfin uses system_ext/framework/com.google.android.camera.extensions.jar
